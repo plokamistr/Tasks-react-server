@@ -1,0 +1,28 @@
+* {font-family: 'Dosis', arial;}
+
+h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    margin: 0;
+}
+
+.pending{ 
+    font-size: 1.3rem;
+    font-weight: 400;
+
+    span {
+        font-weight: 600;
+    }
+}
+
+input {
+    font-size: 1.3rem;
+}
+
+.btn {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: capitalize;
+}

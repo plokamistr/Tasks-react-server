@@ -1,0 +1,58 @@
+@use "styles";
+
+.buttons-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 5px;
+}
+
+
+.btn{
+    width: 200px;
+    box-sizing: content-box;
+    padding: 10px;
+    border-radius: styles.$borderR5;
+    cursor: pointer;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0);
+    transition: styles.$transitions300;
+
+    &:hover{
+        transform: scale(1.05);
+        box-shadow: 5px 10px 11px -12px #000;
+    }
+}
+
+.btn-addtask {
+    @extend .btn;
+}
+
+.btn-removecompletedtask{
+    @extend .btn;
+}
+
+.btn-removeall{
+    @extend .btn;
+}
+
+.item-btn{
+    width: 25px;
+    padding: 2px;
+    border:none;
+}
+
+
+.borrar-item{
+    @extend .btn;
+    background-color: #ff0e0e;
+    color: #fff;
+}
+.edit-item{
+    @extend .btn;
+    background-color: #fffdfd;
+    color: #232323;
+}

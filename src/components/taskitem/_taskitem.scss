@@ -1,0 +1,17 @@
+.tasklist li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2px;
+    padding: 5px;
+    border-bottom: 1px dotted #505050;
+
+    p{  
+        width: 100%;
+        font-weight: 600;
+        line-height: 25px;
+        padding: 5px 0;
+        margin: 0;
+    }
+  }

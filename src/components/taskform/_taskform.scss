@@ -1,0 +1,34 @@
+@use "../styles";
+
+.tasksform {
+    max-width: 100%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+
+    input {
+        width: 100%;
+        border:2px solid rgba(0, 0, 0, 0);        
+        border-radius: styles.$borderR5;
+        padding: 2px 10px;
+        line-height: 40px; 
+        outline: none;
+        text-align: center;
+        box-sizing: border-box;
+        transition: styles.$transitions300;
+        
+        &:focus {
+            border-color: rgb(29, 29, 29);
+        }
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 5px 10px 11px -12px #000;
+        }
+    }
+
+
+}
+
