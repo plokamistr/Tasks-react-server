@@ -4,6 +4,7 @@ import TaskForm from './components/taskform/TaskForm'
 import TaskList from './components/tasklist/TaskList'
 import TaskItem from './components/taskitem/TaskItem'
 import useLocalStorage from './hooks/useLocalStorage'
+import api from './helpers/api';
 
 
 function App() {              
@@ -42,10 +43,20 @@ function App() {
 
       
   // Aqui viene el text=task de taskForm via handleSubmit la cual lleva el text de onNewTask que viene via props de TaskForm          
-  function handleSubmit(task) {
+  
+  const handleSubmit = async(task) => {
     const newTasks = [...tasks,task]
+    const response = await api.createTask(task);
     setTasks(newTasks)
   }
+
+  {/*
+  function handleSubmit(task) {
+    const newTasks = [...tasks,task]
+    const api.createTask(newTasks)
+    setTasks(newTasks)
+  }
+  */}
 
   // Marca las tareas como completadas
   function completeTask(id) {
@@ -80,11 +91,7 @@ function App() {
     setTasks([])
   }
 
-
-
-  
-
-    
+      
   return (
     <div className="wrapper">
       <div className="container">
