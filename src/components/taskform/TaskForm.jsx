@@ -44,6 +44,7 @@ function TaskForm({onNewTasks, onCompletedTasks}){
 
             <input ref={refInput} type="text" placeholder="Write your task" value={title} onChange={handleInput}/>
             {error && <p className="errormsg">{error}</p>}
+            
             <div className="buttons-wrapper">
                 <button className="btn btn-addtask" type="submit" onClick={() => {refInput.current.focus()}}>Add task to list</button> {/* TO DO on error disable button */}
                 {/* Pasar las tasks via props desde app y quitarlas desde task form?????? */}
