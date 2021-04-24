@@ -6,7 +6,7 @@ import TaskItem from './components/taskitem/TaskItem'
 import useLocalStorage from './hooks/useLocalStorage'
 
 
-function App() {               
+function App() {              
 
   const [tasks, setTasks] = useLocalStorage("Tasks Added", [])
   console.log("All tasks:", tasks)
