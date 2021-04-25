@@ -10,13 +10,6 @@ function TaskForm({onNewTasks, onCompletedTasks}){
     const refInput = useRef()
 
     
-    function handleInput(e) {
-        setTitle(e.target.value)
-        if (error && inputField.value){
-            setError("")
-        }
-    }
-           
     function handleSubmit(e){
         e.preventDefault()
 
@@ -34,6 +27,13 @@ function TaskForm({onNewTasks, onCompletedTasks}){
        }
     }
 
+    function handleInput(e) {
+        setTitle(e.target.value)
+        if (error){
+            setError("")
+        }
+    }
+           
     function handleCompletedTasks() {
         onCompletedTasks()
     }
@@ -42,7 +42,7 @@ function TaskForm({onNewTasks, onCompletedTasks}){
 
         <form className="tasksform" onSubmit={handleSubmit}>
 
-            <input ref={refInput} type="text" placeholder="Write your task" value={title} onChange={handleInput}/>
+            <input className="writetask-input" ref={refInput} type="text" placeholder="Write your task" value={title} onChange={handleInput}/>
             {error && <p className="errormsg">{error}</p>}
             
             <div className="buttons-wrapper">
