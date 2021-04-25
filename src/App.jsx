@@ -3,92 +3,90 @@ import './App.css'
 import TaskForm from './components/taskform/TaskForm'
 import TaskList from './components/tasklist/TaskList'
 import TaskItem from './components/taskitem/TaskItem'
-import useLocalStorage from './hooks/useLocalStorage'
 import api from './helpers/api';
 
 
 function App() {              
 
-  const [tasks, setTasks] = useLocalStorage("Tasks Added", [])
-  console.log("All tasks:", tasks)
+  
+  //SERVER Creamos un state para los tasks desde el servidor
+  const [serverTasks, setServerTasks] = useState([]);
+  console.log("All tasks:", serverTasks)
+
+  
+   
+  
+
+  //SERVER Se ejecuta solo la primera vez y nos trae todos los tasks
+  useEffect(async() => {
+    setServerTasks(await api.getAllTasks());
+  },[])
+
 
   // Filtramos el tasks para devolvernos un array con los items que tienen done -> true HECHOS
-  const tasksDone = tasks.filter( item => item.done)
+  const tasksDone = serverTasks.filter( item => item.done)
   console.log("Tasks DONE:",tasksDone)
 
   // Filtramos el tasks para devolvernos un array con los items que tienen done -> falso NO HECHOS
-  const tasksNotDone = tasks.filter(item => !item.done)
+  const tasksNotDone = serverTasks.filter(item => !item.done)
   console.log("Tasks TO DO:",tasksNotDone)
 
   // Obtenemos el numero de los tasks no hechos
   const tasksNotDoneNumber = tasksNotDone.length;
   console.log("Tasks to do Number:",tasksNotDoneNumber)
-  
-   
 
+  {/*
   // Show message if no tasks left TO DO only the first time page loads NOT WORKING 
   useEffect(() => {
-      if (tasksNotDoneNumber === 0){
-        alert("Great!!!! You don't have any task to do. Why don't you add some???")
-      }
-   
+    if (tasksNotDoneNumber === 0){
+      alert("Great!!!! You don't have any task to do. Why don't you add some???")
+    }
   },[])
+  */}
 
-
-    // Show tasks left to document title
+  // Show tasks left to document title
   useEffect (() => {
     const docTitle = document.querySelector("title");
     docTitle.innerText = `Task Manager / ${tasksNotDoneNumber} TASKS LEFT`
-  },[tasks])
+  },[serverTasks])
 
       
-  // Aqui viene el text=task de taskForm via handleSubmit la cual lleva el text de onNewTask que viene via props de TaskForm          
-  
-  const handleSubmit = async(task) => {
-    const newTasks = [...tasks,task]
-    const response = await api.createTask(task);
-    setTasks(newTasks)
+
+  // Crear Tarea -> viene el text=task de taskForm via handleSubmit
+  //SERVER Enviamos las tareas creadas al servidor y recogemos las tareas via get
+  async function handleSubmit(task) {
+    await api.createTask(task);
+    const tasks = await api.getAllTasks()
+    setServerTasks(tasks);
   }
 
-  {/*
-  function handleSubmit(task) {
-    const newTasks = [...tasks,task]
-    const api.createTask(newTasks)
-    setTasks(newTasks)
-  }
-  */}
-
-  // Marca las tareas como completadas
-  function completeTask(id) {
-    const newTasks = tasks.map( item => { 
-        if (item.id === id){
-            return{
-                ...item,
-                done:!item.done
-            } 
-        }
-        return item
-    } )
-    setTasks(newTasks)
+  // Borrar tarea cuando clickas al botton
+  async function removeTask(id){
+    const response = await api.deleteTask(id);
+    alert(response.message);
+    const tasks = await api.getAllTasks();
+    setServerTasks(tasks);
   }
 
-
-  // Borrar las tareas cuando clickas al botton
-  function removeTask(id){
-    const newTasks = tasks.filter( item => item.id !== id)
-    setTasks(newTasks)
+  // Marca la tarea como completadas
+  async function completeTask(id, done) {
+    await api.patchTask(id, { done : !done});
+    const tasks = await api.getAllTasks();
+    setServerTasks(tasks);
   }
-
 
   // Clear todas las tareas completadas
-  function handleCompletedTasks() {
-    const completedTasks = tasks.filter(item => item.done !== true)
-    setTasks(completedTasks)
+  async function handleCompletedTasks() {
+    await api.clearCompleted();
+    const tasks = await api.getAllTasks();
+    setServerTasks(tasks);
   }
 
   // Clear todas las tareas 
-  function handleClearAllTasks(){
-    setTasks([])
+  async function handleClearAllTasks(){
+    await api.clearAll();
+    
+    setServerTasks([])
   }
 
       
@@ -97,13 +95,13 @@ function App() {
       <div className="container">
 
         <h1 className="decoration1"> Task Manager </h1>
-        <p className="pending">You have <span>{tasks.length}</span> tasks remaining</p>  
+        <p className="pending">You have <span>{serverTasks.length}</span> tasks remaining</p>  
 
         <TaskForm onNewTasks={handleSubmit} onCompletedTasks={handleCompletedTasks}/>
 
         <TaskList> 
-
-          {tasks.map(task => 
+          
+          {serverTasks.map(task => 
             <TaskItem 
               key={task.id} 
               task={task} 
