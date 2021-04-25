@@ -4,7 +4,7 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: space-around;
     gap: 5px;
 }
@@ -26,18 +26,10 @@
         box-shadow: 5px 10px 11px -12px #000;
     }
 }
-
-.btn-addtask {
-    @extend .btn;
-}
-
-.btn-removecompletedtask{
-    @extend .btn;
-}
-
-.btn-removeall{
-    @extend .btn;
-}
+.btn-addtask,
+.btn-removecompletedtask {
+    width: 44%;
+    }
 
 .item-btn{
     width: 25px;
@@ -45,14 +37,15 @@
     border:none;
 }
 
-
 .borrar-item{
-    @extend .btn;
     background-color: #ff0e0e;
     color: #fff;
 }
 .edit-item{
-    @extend .btn;
     background-color: #fffdfd;
     color: #232323;
+}
+.save-item {
+    background-color: #72b152;
+    color: #fff;
 }

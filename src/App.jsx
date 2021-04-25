@@ -13,9 +13,7 @@ function App() {
   const [serverTasks, setServerTasks] = useState([]);
   console.log("All tasks:", serverTasks)
 
-  
-   
-  
+    
 
   //SERVER Se ejecuta solo la primera vez y nos trae todos los tasks
   useEffect(async() => {
@@ -60,6 +58,13 @@ function App() {
     setServerTasks(tasks);
   }
 
+  // Editar texto de tarea que viene desde el itemList via props
+  async function editedTask(id, text) {
+    await api.patchTask(id, { text : text});
+    const tasks = await api.getAllTasks();
+    setServerTasks(tasks);
+  }
+
   // Borrar tarea cuando clickas al botton
   async function removeTask(id){
     const response = await api.deleteTask(id);
@@ -85,7 +90,6 @@ function App() {
   // Clear todas las tareas 
   async function handleClearAllTasks(){
     await api.clearAll();
-    
     setServerTasks([])
   }
 
@@ -97,7 +101,7 @@ function App() {
         <h1 className="decoration1"> Task Manager </h1>
         <p className="pending">You have <span>{serverTasks.length}</span> tasks remaining</p>  
 
-        <TaskForm onNewTasks={handleSubmit} onCompletedTasks={handleCompletedTasks}/>
+        <TaskForm onNewTasks={handleSubmit} onCompletedTasks={handleCompletedTasks} />
 
         <TaskList> 
           
@@ -107,6 +111,7 @@ function App() {
               task={task} 
               onClickComplete={completeTask}
               onClickRemove={removeTask} 
+              onEditTask={editedTask}
             />
             
           )}

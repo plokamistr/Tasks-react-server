@@ -1,3 +1,5 @@
+@use "../styles";
+
 .tasklist {
     max-width: 100%;
     width: 50%;
@@ -8,6 +10,31 @@
 
     ul {
         padding: 0;
+    }
+    .modifyform  {
+
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 5px;
+            padding: 5px;
+
+            .modify-input {
+                width: 100%;
+                border-radius: styles.$borderR5;
+                border-width: styles.$noborder;
+                font-size: 15px;
+                line-height: 28px;
+                padding:0 10px;
+            }
+        }
+
+        .errormsg{
+            text-align: center;
+            margin: 0;
+        }
+
     }
 }
 
