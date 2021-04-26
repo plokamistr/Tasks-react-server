@@ -36,6 +36,7 @@ function TaskItem({task, onClickComplete, onClickRemove, onEditTask}) {
             setError("You cannot modify title with empty space")
        }else {
             onEditTask({
+                id : task.id,
                 text: editTitle
             })
             setEditTitle("")

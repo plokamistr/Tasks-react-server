@@ -59,8 +59,8 @@ function App() {
   }
 
   // Editar texto de tarea que viene desde el itemList via props
-  async function editedTask(id, text) {
-    await api.patchTask(id, { text : text});
+  async function editedTask({id, text}) {
+    await api.patchTask( id, {text} );
     const tasks = await api.getAllTasks();
     setServerTasks(tasks);
   }
