@@ -35,7 +35,16 @@ const patchTask = (taskId, data) => {
     .catch(error => console.error('Error:', error))
 }
 
-// PATCH OR PUT TASK TITLE 
+
+const putTask = (taskId, data) => {
+    return fetch(`${API_URL}/task/${taskId}`, {
+        method: 'PUT',
+        mode: 'cors',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ data }),
+    }).then(res => res = res.json())
+    .catch(error => console.error('Error:', error))
+}
 
 const clearCompleted = () => {
     return fetch(`${API_URL}/task/clearCompleted`, {
@@ -60,6 +69,7 @@ export default {
     getAllTasks,
     deleteTask,
     patchTask,
+    putTask,
     clearCompleted,
     clearAll,
 }

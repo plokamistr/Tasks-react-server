@@ -58,12 +58,22 @@ function App() {
     setServerTasks(tasks);
   }
 
-  // Editar texto de tarea que viene desde el itemList via props
+  
+  // Editar texto de tarea que viene desde el itemList via props via PATCH
   async function editedTask({id, text}) {
     await api.patchTask( id, {text} );
     const tasks = await api.getAllTasks();
     setServerTasks(tasks);
   }
+  
+  {/*
+  // Editar texto de tarea que viene desde el itemList via props via PUT
+  async function editedTask({id, text, done}) {
+    await api.putTask( id, {text}, {done} );
+    const tasks = await api.getAllTasks()
+    setServerTasks(tasks);
+  }
+  */}
 
   // Borrar tarea cuando clickas al botton
   async function removeTask(id){
