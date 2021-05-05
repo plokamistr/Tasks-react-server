@@ -1,0 +1,30 @@
+@use "../components/styles";
+
+form.loginform {
+    width: 90%;
+
+    .input-wrapper {
+
+        .email-input,.password-input
+        {
+            width: 100%;
+            border:2px solid rgba(0, 0, 0, 0);        
+            border-radius: styles.$borderR5;
+            padding: 2px 10px;
+            line-height: 40px; 
+            margin: 15px 0 25px;
+            outline: none;
+            text-align: center;
+            box-sizing: border-box;
+            transition: styles.$transitions300;
+            
+            &:focus {
+                border-color: rgb(29, 29, 29);
+            }
+            &:hover {
+                transform: scale(1.1);
+                box-shadow: 5px 10px 11px -12px #000;
+            }
+        }
+    }
+}

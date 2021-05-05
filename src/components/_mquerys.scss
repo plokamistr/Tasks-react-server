@@ -2,13 +2,14 @@
     
     body {padding: 1em;}
 
-    h1{font-size: 2rem;}
+    h1{font-size: 2rem; text-align: center;}
 
     .tasksform {width: 100%;}
 
     .tasklist {width: 100%;}
 
-    .buttons-wrapper {flex-wrap: wrap;}
+    .buttons-wrapper,
+    .input-wrapper {flex-wrap: wrap;}
     .btn-addtask,
     .btn-removecompletedtask {
         width: 90%;

@@ -1,5 +1,6 @@
 body {
   padding: 2em;
+  height: 100vh;
   overflow-x: hidden;
   background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
   background-size: 400% 400%;
@@ -74,6 +75,15 @@ input {
   flex-wrap: nowrap;
   justify-content: space-around;
   gap: 5px;
+}
+
+.input-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  gap: 25px;
 }
 
 .btn {
@@ -195,6 +205,29 @@ input {
   margin: 0;
 }
 
+form.loginform {
+  width: 90%;
+}
+form.loginform .input-wrapper .email-input, form.loginform .input-wrapper .password-input {
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 5px;
+  padding: 2px 10px;
+  line-height: 40px;
+  margin: 15px 0 25px;
+  outline: none;
+  text-align: center;
+  box-sizing: border-box;
+  transition: 300ms;
+}
+form.loginform .input-wrapper .email-input:focus, form.loginform .input-wrapper .password-input:focus {
+  border-color: #1d1d1d;
+}
+form.loginform .input-wrapper .email-input:hover, form.loginform .input-wrapper .password-input:hover {
+  transform: scale(1.1);
+  box-shadow: 5px 10px 11px -12px #000;
+}
+
 @media screen and (max-width: 767px) {
   body {
     padding: 1em;
@@ -202,6 +235,7 @@ input {
 
   h1 {
     font-size: 2rem;
+    text-align: center;
   }
 
   .tasksform {
@@ -212,7 +246,8 @@ input {
     width: 100%;
   }
 
-  .buttons-wrapper {
+  .buttons-wrapper,
+.input-wrapper {
     flex-wrap: wrap;
   }
 
