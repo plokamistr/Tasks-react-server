@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:3001';
+const API_URL = 'http://localhost:8080';
 
 // Aqui se envian las nuevas tareas al BE/DB
 const createTask =  (data) => {

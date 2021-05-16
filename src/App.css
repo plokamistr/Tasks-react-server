@@ -68,6 +68,13 @@ input {
   text-transform: capitalize;
 }
 
+a {
+  font-weight: bold;
+}
+a:focus {
+  color: #000;
+}
+
 .buttons-wrapper {
   width: 100%;
   display: flex;
@@ -203,6 +210,30 @@ input {
   line-height: 25px;
   padding: 5px 0;
   margin: 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  padding: 0;
+  max-width: 100%;
+  gap: 20px;
+}
+nav ul li {
+  list-style-type: none;
+}
+nav ul li a {
+  transition: 300ms;
+  border-radius: 5px;
+  font-size: 1.6em;
+  text-decoration: none;
+  padding: 5px 15px;
+  background-color: rgba(236, 236, 236, 0.63);
+}
+nav ul li a:hover {
+  background-color: #fff;
+  box-shadow: 5px 10px 11px -12px #000;
 }
 
 form.loginform {

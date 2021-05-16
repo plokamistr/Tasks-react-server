@@ -1,19 +1,21 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom';
+import  useAuth  from '../hooks/useAuth'
 import '../App.css'
 
 
-function Login({onLogin}) {              
 
-  const [email, setEmail] = useState("");
-  const [pass, setPass] = useState("");
+function Login() {              
+    const {login} = useAuth();
+    const [email, setEmail] = useState("");
+    const [pass, setPass] = useState("");
 
   let history = useHistory();
 
 
   function handleSubmit(e) {
       e.preventDefault();
-      onLogin({email,pass});
+      login({email,pass});
       history.push("/tasks");
   }
 

@@ -1,10 +1,11 @@
-import React, { useState,useEffect } from 'react'
+import React from 'react'
+import useAuth from '../hooks/useAuth';
 import '../App.css'
 
 
 function Profile() {              
-
   
+  const {email} = useAuth();
   
       
   return (
@@ -13,6 +14,7 @@ function Profile() {
 
         <h1 className="decoration1"> Profile </h1>
         
+        <p> User <strong>{email}</strong> is logged in </p>
       
 
 

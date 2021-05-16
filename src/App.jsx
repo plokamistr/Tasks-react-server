@@ -1,38 +1,46 @@
-import React, {useState} from "react";
-import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import AuthProvider from "./components/auth-provider"
 import Navbar from "./components/main-menu/navbar";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Tasklist from "./pages/tasks-list-page";
 import Profile from "./pages/profile";
+import Private from "./components/private-route";
 
 function App() {
 
-  const [user, setUser]= useState({email:"", pass:""});
-  console.log (user)
-
+  
 
   return (
     <BrowserRouter>
-      <Navbar />
+      
+      <AuthProvider>
 
-      <Switch>
-        <Route exact path="/login">
-          <Login  onLogin={setUser}/>
-        </Route>
+        <Navbar />
 
-        <Route exact path="/tasks">
-          <Tasklist />
-        </Route>
+        <Switch>
 
-        <Route exact path="/profile">
-          <Profile email ={user.email}/>
-        </Route>
-        
-        <Route path="/">
-          <Home />
-        </Route>
-      </Switch>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+
+          <Private exact path="/tasks">
+            <Tasklist />
+          </Private>
+
+          <Private exact path="/profile">
+            <Profile />
+          </Private>
+
+          <Route path="/">
+            <Home />
+          </Route>
+
+        </Switch>
+
+      </AuthProvider>
+      
     </BrowserRouter>
   );
 }

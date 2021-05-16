@@ -1,8 +1,12 @@
-import React, { useState,useEffect } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom";
+import useAuth from '../../hooks/useAuth';
 import '../../App.css';
 
-function Navbar() {              
+
+function Navbar() {        
+  
+  const {logged,logout} = useAuth();
 
         
   return (
@@ -11,13 +15,23 @@ function Navbar() {
         <nav>
           <ul>
             <li>
-              <Link to="/login">Login</Link>
+              <Link to="/">Home</Link>
             </li>
             <li>
               <Link to="/tasks">Tasks</Link>
             </li>
             <li>
               <Link to="/profile">Profile</Link>
+            </li>
+            <li>
+              {logged ? (
+                <Link to="/login" onClick={logout}>Logout</Link>
+              ):(
+                <Link to="/login">Login</Link>
+              )
+              }
+
+              
             </li>
           </ul>
         </nav>
